@@ -13,10 +13,9 @@ tags:
   - contributing
   - guidelines
 last_update:
-  date: 2025-05-12
+  date: '2025-05-11'
   author: Documentation Team
-pagination_next: contributing/review
-pagination_prev: contributing/style
+pagination_prev: contributing/style/index
 ---
 
 import { SectionLevelOne, SectionLevelTwo } from '@site/src/components/docs';
@@ -70,11 +69,13 @@ All templates are React components that accept standardized props for consistenc
 **Purpose**: Main section container for top-level documentation sections
 
 **Required Props**:
+
 - `id`: Unique identifier for the section (used for navigation)
 - `title`: Section title
 - `sectionNumber`: Numerical identifier (e.g., "5")
 
 **Optional Props**:
+
 - `description`: Brief description of the section
 - `icon`: Icon component to display with the title
 - `className`: Additional CSS classes
@@ -83,12 +84,8 @@ All templates are React components that accept standardized props for consistenc
 
 </ContentBlock>
 
-<CodeExampleBlock
-  title="SectionLevelOne Example"
-  language="jsx"
-  fileName="tokenomics-section.mdx"
->
-{`<SectionLevelOne
+<CodeExampleBlock title="SectionLevelOne Example" language="jsx" fileName="tokenomics-section.mdx">
+  {`<SectionLevelOne
   id="tokenomics"
   title="Tokenomics"
   description="VVAI Token Economics and Governance"
@@ -111,11 +108,13 @@ All templates are React components that accept standardized props for consistenc
 **Purpose**: Container for subsections within a main section
 
 **Required Props**:
+
 - `id`: Unique identifier for the subsection
 - `title`: Subsection title
 - `sectionNumber`: Numerical identifier (e.g., "5.2")
 
 **Optional Props**:
+
 - `description`: Brief description of the subsection
 - `className`: Additional CSS classes
 
@@ -123,12 +122,8 @@ All templates are React components that accept standardized props for consistenc
 
 </ContentBlock>
 
-<CodeExampleBlock
-  title="SectionLevelTwo Example"
-  language="jsx"
-  fileName="token-model-section.mdx"
->
-{`<SectionLevelTwo
+<CodeExampleBlock title="SectionLevelTwo Example" language="jsx" fileName="token-model-section.mdx">
+  {`<SectionLevelTwo
   id="token-model"
   title="Token Model"
   description="Dual-token system design and distribution"
@@ -151,11 +146,13 @@ All templates are React components that accept standardized props for consistenc
 **Purpose**: Container for detailed components within a subsection
 
 **Required Props**:
+
 - `id`: Unique identifier for the component
 - `title`: Component title
 - `sectionNumber`: Numerical identifier (e.g., "5.2.1")
 
 **Optional Props**:
+
 - `description`: Brief description of the component
 - `className`: Additional CSS classes
 
@@ -168,7 +165,7 @@ All templates are React components that accept standardized props for consistenc
   language="jsx"
   fileName="token-distribution-section.mdx"
 >
-{`<SectionLevelThree
+  {`<SectionLevelThree
   id="token-distribution"
   title="Token Distribution"
   description="Allocation of tokens across stakeholders"
@@ -201,9 +198,11 @@ All templates are React components that accept standardized props for consistenc
 **Purpose**: Container for text-based content
 
 **Required Props**:
+
 - `title`: Block title
 
 **Optional Props**:
+
 - `variant`: Visual style variant ("default", "info", "warning", "success")
 - `className`: Additional CSS classes
 
@@ -211,12 +210,8 @@ All templates are React components that accept standardized props for consistenc
 
 </ContentBlock>
 
-<CodeExampleBlock
-  title="ContentBlock Example"
-  language="jsx"
-  fileName="overview-content.mdx"
->
-{`<ContentBlock
+<CodeExampleBlock title="ContentBlock Example" language="jsx" fileName="overview-content.mdx">
+  {`<ContentBlock
   title="Overview"
   variant="info"
 >
@@ -237,11 +232,13 @@ All templates are React components that accept standardized props for consistenc
 **Purpose**: Container for diagrams and visual content
 
 **Required Props**:
+
 - `title`: Block title
 - `imageSrc`: Path to the diagram image
 - `imageAlt`: Accessible description of the image
 
 **Optional Props**:
+
 - `description`: Additional context for the diagram
 - `caption`: Figure caption text
 - `className`: Additional CSS classes
@@ -255,7 +252,7 @@ All templates are React components that accept standardized props for consistenc
   language="jsx"
   fileName="token-distribution-diagram.mdx"
 >
-{`<DiagramBlock
+  {`<DiagramBlock
   title="Token Distribution"
   description="Allocation of VVAI tokens across stakeholders"
   imageSrc="/token-distribution-pie-chart.png"
@@ -277,10 +274,12 @@ All templates are React components that accept standardized props for consistenc
 **Purpose**: Container for code examples with syntax highlighting
 
 **Required Props**:
+
 - `title`: Block title
 - `language`: Programming language for syntax highlighting
 
 **Optional Props**:
+
 - `description`: Context for the code example
 - `fileName`: Name of the file containing the code
 - `className`: Additional CSS classes
@@ -289,12 +288,8 @@ All templates are React components that accept standardized props for consistenc
 
 </ContentBlock>
 
-<CodeExampleBlock
-  title="CodeExampleBlock Example"
-  language="jsx"
-  fileName="code-example-usage.mdx"
->
-{`<CodeExampleBlock
+<CodeExampleBlock title="CodeExampleBlock Example" language="jsx" fileName="code-example-usage.mdx">
+  {`<CodeExampleBlock
   title="Smart Contract Example"
   description="Implementation of token vesting logic"
   language="solidity"
@@ -321,11 +316,13 @@ All templates are React components that accept standardized props for consistenc
 **Purpose**: Container for tabular data
 
 **Required Props**:
+
 - `title`: Block title
 - `columns`: Array of column definitions
 - `data`: Array of data objects
 
 **Optional Props**:
+
 - `description`: Context for the table
 - `caption`: Table caption text
 - `className`: Additional CSS classes
@@ -334,12 +331,8 @@ All templates are React components that accept standardized props for consistenc
 
 </ContentBlock>
 
-<CodeExampleBlock
-  title="TableBlock Example"
-  language="jsx"
-  fileName="token-allocation-table.mdx"
->
-{`<TableBlock
+<CodeExampleBlock title="TableBlock Example" language="jsx" fileName="token-allocation-table.mdx">
+  {`<TableBlock
   title="Token Allocation Details"
   description="Detailed breakdown of token allocations"
   columns={[
@@ -368,9 +361,11 @@ All templates are React components that accept standardized props for consistenc
 **Purpose**: Container for interactive components
 
 **Required Props**:
+
 - `title`: Block title
 
 **Optional Props**:
+
 - `description`: Context for the interactive component
 - `className`: Additional CSS classes
 
@@ -378,12 +373,8 @@ All templates are React components that accept standardized props for consistenc
 
 </ContentBlock>
 
-<CodeExampleBlock
-  title="InteractiveBlock Example"
-  language="jsx"
-  fileName="staking-calculator.mdx"
->
-{`<InteractiveBlock
+<CodeExampleBlock title="InteractiveBlock Example" language="jsx" fileName="staking-calculator.mdx">
+  {`<InteractiveBlock
   title="Token Staking Calculator"
   description="Calculate potential returns from staking VVAI tokens"
 >
@@ -404,10 +395,12 @@ All templates are React components that accept standardized props for consistenc
 **Purpose**: Highlighted content for important information
 
 **Required Props**:
+
 - `title`: Block title
 - `type`: Callout type ("info", "warning", "note", "important")
 
 **Optional Props**:
+
 - `icon`: Custom icon component
 - `className`: Additional CSS classes
 
@@ -415,12 +408,8 @@ All templates are React components that accept standardized props for consistenc
 
 </ContentBlock>
 
-<CodeExampleBlock
-  title="CalloutBlock Example"
-  language="jsx"
-  fileName="security-notice.mdx"
->
-{`<CalloutBlock
+<CodeExampleBlock title="CalloutBlock Example" language="jsx" fileName="security-notice.mdx">
+  {`<CalloutBlock
   title="Security Notice"
   type="warning"
 >
@@ -451,10 +440,12 @@ All templates are React components that accept standardized props for consistenc
 **Purpose**: Provides navigation between related sections
 
 **Required Props**:
+
 - `prevSection`: Object with previous section details
 - `nextSection`: Object with next section details
 
 **Optional Props**:
+
 - `className`: Additional CSS classes
 
 **Example Usage**:
@@ -466,7 +457,7 @@ All templates are React components that accept standardized props for consistenc
   language="jsx"
   fileName="tokenomics-navigation.mdx"
 >
-{`<SectionNavigation
+  {`<SectionNavigation
   prevSection={{
     title: "Token Model",
     href: "/tokenomics#token-model"
@@ -491,9 +482,11 @@ All templates are React components that accept standardized props for consistenc
 **Purpose**: Provides table of contents for the current section
 
 **Required Props**:
+
 - `items`: Array of TOC items with titles and IDs
 
 **Optional Props**:
+
 - `title`: TOC title
 - `className`: Additional CSS classes
 
@@ -501,12 +494,8 @@ All templates are React components that accept standardized props for consistenc
 
 </ContentBlock>
 
-<CodeExampleBlock
-  title="SectionToc Example"
-  language="jsx"
-  fileName="tokenomics-toc.mdx"
->
-{`<SectionToc
+<CodeExampleBlock title="SectionToc Example" language="jsx" fileName="tokenomics-toc.mdx">
+  {`<SectionToc
   title="In This Section"
   items={[
     { title: "Token Model", id: "token-model" },
@@ -529,9 +518,11 @@ All templates are React components that accept standardized props for consistenc
 **Purpose**: Indicates reading progress within a section
 
 **Required Props**:
+
 - `sectionId`: ID of the section to track
 
 **Optional Props**:
+
 - `showPercentage`: Whether to display percentage (default: true)
 - `className`: Additional CSS classes
 
@@ -539,12 +530,8 @@ All templates are React components that accept standardized props for consistenc
 
 </ContentBlock>
 
-<CodeExampleBlock
-  title="SectionProgress Example"
-  language="jsx"
-  fileName="tokenomics-progress.mdx"
->
-{`<SectionProgress
+<CodeExampleBlock title="SectionProgress Example" language="jsx" fileName="tokenomics-progress.mdx">
+  {`<SectionProgress
   sectionId="tokenomics"
   showPercentage={true}
 />`}
@@ -579,7 +566,7 @@ All templates accept a `className` prop for additional styling:
   language="jsx"
   fileName="custom-styled-section.mdx"
 >
-{`<SectionLevelOne
+  {`<SectionLevelOne
   id="tokenomics"
   title="Tokenomics"
   className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950"
@@ -625,133 +612,4 @@ Templates can be nested to create complex layouts:
     nextSection={nextSection}
   />
 </SectionLevelOne>`}
-</CodeExampleBlock>
-
-</SectionLevelTwo>
-
-<SectionLevelTwo
-  id="common-patterns"
-  title="Common Implementation Patterns"
-  sectionNumber="10.2.6"
->
-
-<ContentBlock title="Standard Patterns">
-
-### Standard Section Structure
-
-</ContentBlock>
-
-<CodeExampleBlock
-  title="Standard Section Structure"
-  language="jsx"
-  fileName="standard-section.mdx"
->
-{`<SectionLevelOne id="section-id" title="Section Title" sectionNumber="X">
-  {/* Brief introduction */}
-  <ContentBlock title="Overview">
-    <p>Introduction text...</p>
-  </ContentBlock>
-  
-  {/* Table of contents for the section */}
-  <SectionToc items={tocItems} />
-  
-  {/* First subsection */}
-  <SectionLevelTwo id="subsection-1" title="Subsection 1" sectionNumber="X.1">
-    {/* Subsection content */}
-  </SectionLevelTwo>
-  
-  {/* Second subsection */}
-  <SectionLevelTwo id="subsection-2" title="Subsection 2" sectionNumber="X.2">
-    {/* Subsection content */}
-  </SectionLevelTwo>
-  
-  {/* Navigation between sections */}
-  <SectionNavigation
-    prevSection={prevSection}
-    nextSection={nextSection}
-  />
-</SectionLevelOne>`}
-</CodeExampleBlock>
-
-<ContentBlock title="Technical Documentation Pattern">
-
-</ContentBlock>
-
-<CodeExampleBlock
-  title="Technical Documentation Pattern"
-  language="jsx"
-  fileName="technical-component.mdx"
->
-{`<SectionLevelTwo id="technical-component" title="Technical Component" sectionNumber="X.Y">
-  {/* Conceptual overview */}
-  <ContentBlock title="Concept">
-    <p>Explanation of the concept...</p>
-  </ContentBlock>
-  
-  {/* Visual representation */}
-  <DiagramBlock
-    title="Component Architecture"
-    imageSrc="/path/to/diagram.png"
-    imageAlt="Architecture diagram"
-  />
-  
-  {/* Implementation details */}
-  <CodeExampleBlock
-    title="Implementation"
-    language="typescript"
-    fileName="component.ts"
-  >
-    {\`// Code example\`}
-  </CodeExampleBlock>
-  
-  {/* Configuration options */}
-  <TableBlock
-    title="Configuration Options"
-    columns={configColumns}
-    data={configOptions}
-  />
-  
-  {/* Important notes */}
-  <CalloutBlock title="Important Considerations" type="important">
-    <p>Critical information...</p>
-  </CalloutBlock>
-</SectionLevelTwo>`}
-</CodeExampleBlock>
-
-</SectionLevelTwo>
-
-<SectionLevelTwo
-  id="troubleshooting"
-  title="Troubleshooting"
-  sectionNumber="10.2.7"
->
-
-<ContentBlock title="Common Issues">
-
-### Common Issues
-
-#### Issue: Section not appearing in navigation
-**Solution**: Ensure the section has a unique `id` prop and is properly registered in the sidebar navigation configuration.
-
-#### Issue: Inconsistent visual hierarchy
-**Solution**: Verify that you're using the correct template level (SectionLevelOne, SectionLevelTwo, SectionLevelThree) for the content's position in the hierarchy.
-
-#### Issue: Content blocks not rendering properly
-**Solution**: Check that all required props are provided and that child content is properly formatted.
-
-#### Issue: Navigation links not working
-**Solution**: Verify that section IDs match the href values in navigation components and that the IDs exist in the document.
-
-### Getting Help
-
-If you encounter issues not covered in this guide, please:
-
-1. Check the component documentation in the codebase
-2. Review existing implementations for similar patterns
-3. Contact the documentation team for assistance
-
-</ContentBlock>
-
-</SectionLevelTwo>
-
-</SectionLevelOne>
+</CodeExample

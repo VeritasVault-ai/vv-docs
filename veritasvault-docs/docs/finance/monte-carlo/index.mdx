@@ -13,9 +13,8 @@ tags:
   - simulation
   - technical
 last_update:
-  date: 2025-05-04
+  date: '2025-05-11'
   author: Finance Team
-pagination_next: finance/factors
 pagination_prev: finance/index
 ---
 
@@ -108,14 +107,14 @@ from scipy.stats import t
 from sklearn.mixture import GaussianMixture
 
 class RegimeSwitchingModel:
-    """
-    Implements a regime-switching model for crypto asset returns.
-    """
-    
+"""
+Implements a regime-switching model for crypto asset returns.
+"""
+
     def __init__(self, n_regimes=3):
         """
         Initialize the regime-switching model.
-        
+
         Parameters:
         -----------
         n_regimes : int
@@ -124,11 +123,11 @@ class RegimeSwitchingModel:
         self.n_regimes = n_regimes
         self.regime_model = GaussianMixture(n_components=n_regimes, covariance_type='full')
         self.regime_params = []
-        
+
     def fit(self, returns):
         """
         Fit the regime-switching model to historical returns.
-        
+
         Parameters:
         -----------
         returns : numpy.ndarray
@@ -136,14 +135,14 @@ class RegimeSwitchingModel:
         """
         # Fit the regime detection model
         self.regime_model.fit(returns)
-        
+
         # Determine regime assignments
         regimes = self.regime_model.predict(returns)
-        
+
         # Fit distribution parameters for each regime
         for i in range(self.n_regimes):
             regime_returns = returns[regimes == i]
-            
+
             if len(regime_returns) > 0:
                 # Fit t-distribution for each asset in this regime
                 params = []
@@ -151,20 +150,20 @@ class RegimeSwitchingModel:
                     asset_returns = regime_returns[:, j]
                     df, loc, scale = t.fit(asset_returns)
                     params.append((df, loc, scale))
-                
+
                 # Calculate correlation matrix for this regime
                 corr_matrix = np.corrcoef(regime_returns, rowvar=False)
-                
+
                 self.regime_params.append({
                     'distribution_params': params,
                     'correlation_matrix': corr_matrix,
                     'weight': len(regime_returns) / len(returns)
                 })
-    
+
     def generate_scenarios(self, n_scenarios, n_periods, initial_regime=None):
         """
         Generate return scenarios based on the fitted regime-switching model.
-        
+
         Parameters:
         -----------
         n_scenarios : int
@@ -173,7 +172,7 @@ class RegimeSwitchingModel:
             Number of time periods in each scenario
         initial_regime : int, optional
             Starting regime (if None, randomly selected based on weights)
-            
+
         Returns:
         --------
         scenarios : numpy.ndarray
@@ -182,7 +181,7 @@ class RegimeSwitchingModel:
         """
         n_assets = len(self.regime_params[0]['distribution_params'])
         scenarios = np.zeros((n_scenarios, n_periods, n_assets))
-        
+
         # Transition probabilities between regimes
         # (simplified - in practice, these would be estimated from data)
         trans_probs = np.array([
@@ -190,7 +189,7 @@ class RegimeSwitchingModel:
             [0.1, 0.8, 0.1],  # Bear -> Bull, Bear, Sideways
             [0.2, 0.2, 0.6]   # Sideways -> Bull, Bear, Sideways
         ])
-        
+
         for s in range(n_scenarios):
             # Select initial regime
             if initial_regime is None:
@@ -198,34 +197,36 @@ class RegimeSwitchingModel:
                 current_regime = np.random.choice(self.n_regimes, p=weights)
             else:
                 current_regime = initial_regime
-            
+
             for t in range(n_periods):
                 # Get parameters for current regime
                 params = self.regime_params[current_regime]
                 dist_params = params['distribution_params']
                 corr_matrix = params['correlation_matrix']
-                
+
                 # Generate uncorrelated random variables from t-distributions
                 uncorrelated = np.zeros(n_assets)
                 for j in range(n_assets):
                     df, loc, scale = dist_params[j]
                     uncorrelated[j] = t.rvs(df=df, loc=loc, scale=scale)
-                
+
                 # Apply correlation structure
                 cholesky = np.linalg.cholesky(corr_matrix)
                 correlated = np.dot(cholesky, uncorrelated)
-                
+
                 # Store in scenarios array
                 scenarios[s, t, :] = correlated
-                
+
                 # Transition to next regime
                 current_regime = np.random.choice(
-                    self.n_regimes, 
+                    self.n_regimes,
                     p=trans_probs[current_regime]
                 )
-        
+
         return scenarios
+
 `}
+
 </CodeExampleBlock>
 
 </SectionLevelTwo>

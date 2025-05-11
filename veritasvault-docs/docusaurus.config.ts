@@ -1,8 +1,13 @@
 // docusaurus.config.js
 import type * as Preset from "@docusaurus/preset-classic";
 import type { Config } from "@docusaurus/types";
-import githubTheme from 'prism-react-renderer/themes/github';
-import draculaTheme from 'prism-react-renderer/themes/dracula';
+import path from 'path';
+import { themes } from 'prism-react-renderer';
+
+// Import the custom plugins
+import esbuildPlugin from './plugins/esbuild-plugin';
+import vfileSerializerPlugin from './plugins/vfile-serializer-plugin';
+const disableWebpackCache = require('./webpack.config');
 
 const config: Config = {
   title: "VeritasVault Documentation",
@@ -185,27 +190,49 @@ const config: Config = {
     primaryColor: "#4a90e2", // Light blue accent
     secondaryColor: "#f5a623", // Gold/amber
     prism: {
-      theme: githubTheme,
-      darkTheme: draculaTheme,
+      theme: themes.github,
+      darkTheme: themes.dracula,
     },
   } satisfies Preset.ThemeConfig,
 
   // Add static directory configuration
   staticDirectories: ["static"],
 
-  // Add plugins
+ // Add plugins
   plugins: [
     // Your existing plugins
-  ],  
-  webpack: {
-    jsLoader: (isServer) => ({
-      loader: require.resolve('esbuild-loader'),
-      options: {
-        loader: 'tsx',
-        target: isServer ? 'node12' : 'es2017',
-      },
-    }),
-  },
-}
+    function tailwindPlugin(context, options) {
+      return {
+        name: 'tailwind-plugin',
+        configureWebpack(config, isServer) {
+          return {
+            resolve: {
+              alias: {
+                '@': path.resolve(__dirname, './src'),
+              },
+            },
+          };
+        },
+      };
+    },
+    vfileSerializerPlugin,
+    esbuildPlugin,
+    disableWebpackCache,
+  ],
 
-export default config
+
+
+    // This is a more direct approach to disable webpack caching
+
+  // Use the jsLoader option directly (this is supported in the type definitions)
+  // webpack: {
+  //   jsLoader: (isServer) => ({
+  //     loader: require.resolve('esbuild-loader'),
+  //     options: {
+  //       target: isServer ? 'node12' : 'es2017',
+  //     },
+  //   }),
+  // },
+};
+
+export default config;
